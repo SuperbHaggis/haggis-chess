@@ -1,4 +1,4 @@
-class ClassName
+class Piece
   attr_accessor :color, :image, :space, :legal_moves
 
   def initialize(color)
