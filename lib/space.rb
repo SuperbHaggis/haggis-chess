@@ -1,9 +1,10 @@
 class Space
-  attr_accessor :coord, :children, :color
+  attr_accessor :coord, :children, :color, :image
 
-  def initialize(coord)
+  def initialize(coord, color)
     @coord = coord
     @children = []
-    @color = nil
+    @color = color
+    @image = @color == 'black' ? '■' : '□'
   end
 end
