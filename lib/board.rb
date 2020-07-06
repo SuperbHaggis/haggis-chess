@@ -11,7 +11,7 @@ class Board
         row.each { |space| row.index(space).even? ? space << 'black' : space << 'white' }
       end
     end
-    @spaces = coords.map! { |coord| Space.new(coord[0], coord[1], coord[2]) }
+    @spaces = coords.map { |row| row.map { |space| Space.new(space[0], space[1], space[2]) } }
   end
 end
 
