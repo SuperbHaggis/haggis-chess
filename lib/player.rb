@@ -1,15 +1,25 @@
 class Player
-  attr_accessor :color, :pieces
+  attr_accessor :color, :pieces, :captured
 
   def initialize(color)
     @color = color
-    @pieces = [
-      pawns: Array.new(7) { Pawn.new(color) },
-      rooks: Array.new(2) { Rook.new(color) },
-      bishops: Array.new(2) { Bishop.new(color) },
-      knights: Array.new(2) { Knight.new(color) },
-      queen: Queen.new(color),
-      king: King.new(color)
-    ]
+    @pieces = []
+    8.times { @pieces << Pawn.new(color) }
+    2.times do
+      @pieces << Rook.new(color)
+      @pieces << Bishop.new(color)
+      @pieces << Knight.new(color)
+    end
+    @pieces << Queen.new(color)
+    @pieces << King.new(color)
+  end
+
+  def take_turn(board)
+    puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
+    selected_piece = gets.chomp.split('')
+    selected_piece = @pieces.select { |piece| }
+    puts ">> Choose a destination for your #{piece.class}: "
+    destination = gets.chomp.split('')
+    piece.move(destination)
   end
 end
