@@ -18,7 +18,7 @@ class Player
     puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
     coordinate = gets.chomp.split('')
     selected_piece = @pieces.select { |piece| piece.space == coordinate }
-    puts ">> Choose a destination for your #{piece.class}: "
+    puts ">> Choose a destination for your #{selected_piece.class}: "
     destination = gets.chomp.split('')
     selected_piece.move(destination)
     selected_piece
