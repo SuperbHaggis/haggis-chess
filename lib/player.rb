@@ -14,12 +14,12 @@ class Player
     @pieces << King.new(color)
   end
 
-  def take_turn(board)
+  def take_turn
     puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
-    selected_piece = gets.chomp.split('')
-    selected_piece = @pieces.select { |piece| }
+    coordinate = gets.chomp.split('')
+    selected_piece = @pieces.select { |piece| piece.space == coordinate }
     puts ">> Choose a destination for your #{piece.class}: "
     destination = gets.chomp.split('')
-    piece.move(destination)
+    selected_piece.move(destination)
   end
 end
