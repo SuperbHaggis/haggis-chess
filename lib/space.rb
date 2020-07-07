@@ -4,7 +4,7 @@ class Space
   def initialize(coord1, coord2, color)
     @coord = [coord1, coord2]
     @color = color
-    @default_image = @color == 'black' ? '■' : '□'
+    @default_image = @color == 'white' ? '■' : '□'
     @image = @default_image
     @piece = nil
   end
