@@ -21,5 +21,6 @@ class Player
     puts ">> Choose a destination for your #{piece.class}: "
     destination = gets.chomp.split('')
     selected_piece.move(destination)
+    selected_piece
   end
 end
