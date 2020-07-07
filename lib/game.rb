@@ -7,11 +7,11 @@ class Game
   end
 
   def play_round
-    piece = @players[0].take_turn
-    board[move.space[0]][move.space[1]].update(piece.image)
-    board.display
-    piece = @players[1].take_turn
-    board[move.space[0]][move.space[1]].update(piece.image)
-    board.display
+    @players.each do |player|
+      piece = player.take_turn
+      board[piece.previous[0]][piece.previous[1]].update
+      board[piece.space[0]][piece.space[1]].update(piece.image)
+      board.display
+    end
   end
 end
