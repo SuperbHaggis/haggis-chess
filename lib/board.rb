@@ -14,6 +14,10 @@ class Board
     @spaces = coords.map { |row| row.map { |space| Space.new(space[0], space[1], space[2]) } }
   end
 
+  def refresh
+    @spaces.each { |row| row.each(&:update) }
+  end
+
   def display
     puts '  ' + (0..7).to_a.map(&:to_s).join(' ')
     puts(@spaces.map { |row| spaces.index(row).to_s + ' ' + row.map(&:image).join(' ') })
