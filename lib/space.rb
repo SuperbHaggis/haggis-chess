@@ -9,7 +9,7 @@ class Space
     @open = true
   end
 
-  def update(piece)
-    @image = piece.image
+  def update(image = @default_image)
+    @image = image
   end
 end
