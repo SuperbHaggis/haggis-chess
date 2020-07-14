@@ -10,9 +10,7 @@ class Game
     @players.each do |player|
       piece = player.take_turn
       board.spaces[piece.previous[0]][piece.previous[1]].piece = nil
-      binding.pry
       board.spaces[piece.space[0]][piece.space[1]].piece = piece
-      binding.pry
       board.refresh.display
     end
   end
