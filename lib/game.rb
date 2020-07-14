@@ -9,12 +9,24 @@ class Game
   def play_round
     @players.each do |player|
       piece = player.take_turn
-      prev = board[piece.previous[0]][piece.previous[1]]
-      prev.piece = nil
-      current = board[piece.space[0]][piece.space[1]]
-      current.piece = piece
-      board.refresh
-      board.display
+      board.spaces[piece.previous[0]][piece.previous[1]].piece = nil
+      board[piece.space[0]][piece.space[1]].piece = piece
+      board.refresh.display
+    end
+  end
+
+  def setup
+    @players.each do |player|
+      pawns = player.pieces.select { |piece| piece.class == Pawn }
+      player.color == 'black' ? set_pawns(pawns, 1) : set_pawns(pawns, 6)
+
+    end
+  end
+
+  def set_pawns(pawns, row)
+    @board.spaces[row].each do |space|
+      space.piece = pawns.shift
+      space.piece.space = space.coord
     end
   end
 end
