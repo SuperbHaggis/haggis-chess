@@ -12,7 +12,7 @@ class Player
     coordinate = gets.chomp.split('').map!(&:to_i)
     selected_piece = @pieces.find { |piece| piece.space == coordinate }
     puts ">> Choose a destination for your #{selected_piece.class}: "
-    destination = gets.chomp.split('')
+    destination = gets.chomp.split('').map!(&:to_i)
     selected_piece.move(destination)
     selected_piece
   end

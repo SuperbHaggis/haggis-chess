@@ -10,7 +10,9 @@ class Game
     @players.each do |player|
       piece = player.take_turn
       board.spaces[piece.previous[0]][piece.previous[1]].piece = nil
-      board[piece.space[0]][piece.space[1]].piece = piece
+      binding.pry
+      board.spaces[piece.space[0]][piece.space[1]].piece = piece
+      binding.pry
       board.refresh.display
     end
   end
@@ -19,7 +21,6 @@ class Game
     @players.each do |player|
       pawns = player.pieces.select { |piece| piece.class == Pawn }
       player.color == 'black' ? set_pawns(pawns, 1) : set_pawns(pawns, 6)
-
     end
   end
 
