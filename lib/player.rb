@@ -9,7 +9,7 @@ class Player
 
   def take_turn
     puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
-    coordinate = gets.chomp.split('')
+    coordinate = gets.chomp.split('').map!(&:to_i)
     selected_piece = @pieces.select { |piece| piece.space == coordinate }
     puts ">> Choose a destination for your #{selected_piece.class}: "
     destination = gets.chomp.split('')
