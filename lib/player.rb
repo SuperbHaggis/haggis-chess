@@ -12,6 +12,7 @@ class Player
     end
     @pieces << Queen.new(color)
     @pieces << King.new(color)
+    @pieces.sort! { |a, b| a.class.to_s <=> b.class.to_s }
   end
 
   def take_turn
