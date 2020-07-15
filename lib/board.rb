@@ -31,12 +31,12 @@ class Board
   end
 
   def refresh
-    @spaces.each { |key, index| index.each(&:update) }
+    @spaces.each { |_key, index| index.each(&:update) }
   end
 
   def display
     refresh
-    @spaces.each { |key, index| puts key.to_s + ' ' + index.map(&:image).join(' ') }
+    @spaces.each { |key, index| puts "#{key.to_s} #{index.map(&:image).join(' ')}" }
     puts '  ' + ('A'..'H').to_a.join(' ')
   end
 

@@ -9,11 +9,10 @@ class Game
   def play_round
     @players.each do |player|
       piece = player.take_turn
-      prev = board[piece.previous[0]][piece.previous[1]]
+      prev = board.find_space(piece.previous[1], piece.previous[0])
+      current = board.find_space(piece.space[1], piece.space[0])
       prev.piece = nil
-      current = board[piece.space[0]][piece.space[1]]
       current.piece = piece
-      board.refresh
       board.display
     end
   end
