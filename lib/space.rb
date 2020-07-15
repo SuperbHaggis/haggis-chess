@@ -1,5 +1,5 @@
 class Space
-  attr_accessor :coord, :color, :image, :default_image, :piece, :index
+  attr_accessor :coord, :color, :image, :default_image, :piece, :letter
 
   def initialize(color)
     @color = color

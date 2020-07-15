@@ -25,7 +25,7 @@ class Board
     spaces = create_blanks.map { |row| row.map { |space| Space.new(space[0]) } }
     spaces.each do |row|
       letters = ('A'..'H').to_a
-      row.each { |space| space.index = letters.shift }
+      row.each { |space| space.letter = letters.shift }
     end
     spaces
   end
@@ -38,5 +38,9 @@ class Board
     refresh
     @spaces.each { |key, index| puts key.to_s + ' ' + index.map(&:image).join(' ') }
     puts '  ' + ('A'..'H').to_a.join(' ')
+  end
+
+  def find_space(num, letter)
+    @spaces[num].find { |index| index.letter == letter }
   end
 end

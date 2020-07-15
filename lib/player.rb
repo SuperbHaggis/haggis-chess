@@ -8,13 +8,20 @@ class Player
   end
 
   def take_turn
+    choose_space(choose_piece(board))
+  end
+
+  def choose_piece(board)
     puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
-    coordinate = gets.chomp.split('').map!(&:to_i)
-    selected_piece = @pieces.select { |piece| piece.space == coordinate }
-    puts ">> Choose a destination for your #{selected_piece.class}: "
-    destination = gets.chomp.split('')
-    selected_piece.move(destination)
-    selected_piece
+    coord = gets.chomp.split('')
+    board[coord[1]].find { |space| space.index = coord[0] }.piece
+  end
+
+  def choose_space(piece)
+    puts ">> Choose a destination for your #{piece.class}: "
+    coord = gets.chomp.split('')
+    piece.move(coord)
+    piece
   end
 
   def create_pieces
