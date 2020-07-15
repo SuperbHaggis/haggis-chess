@@ -9,7 +9,6 @@ class Player
       'pawns': [],
       'rooks': []
     }
-    binding.pry
     create_pieces(color)
   end
 

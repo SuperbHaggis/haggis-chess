@@ -17,15 +17,19 @@ class Game
 
   def setup
     @players.each do |player|
-      pawns = player.pieces.select { |piece| piece.class == Pawn }
-      player.color == 'black' ? set_pawns(pawns, 1) : set_pawns(pawns, 6)
+      if player.color == 'black'
+        set_pawns(player.pieces[:pawns], '7')
+      else
+        set_pawns(player.pieces[:pawns], '2')
+      end
     end
   end
 
   # pawns = game.players[0].pieces.select {|p| p.class == Pawn}
   def set_pawns(pawns, row)
+    pawns_temp = pawns
     @board.spaces[row].each do |space|
-      space.piece = pawns.shift
+      space.piece = pawns_temp.shift
       space.piece.space = space.coord
     end
   end
