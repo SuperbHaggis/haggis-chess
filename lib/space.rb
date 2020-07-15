@@ -1,8 +1,7 @@
 class Space
-  attr_accessor :coord, :color, :image, :default_image, :piece
+  attr_accessor :coord, :color, :image, :default_image, :piece, :index
 
-  def initialize(coord1, coord2, color)
-    @coord = [coord1, coord2]
+  def initialize(color)
     @color = color
     @default_image = @color == 'white' ? '■' : '□'
     @image = @default_image
