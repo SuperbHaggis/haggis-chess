@@ -8,9 +8,9 @@ class Game
 
   def play_round
     @players.each do |player|
-      piece = player.take_turn
-      board.spaces.find_space(piece.previous[1], piece.previous[0]).piece = nil
-      board.spaces.find_space(piece.space[1], piece.space[0]).piece = piece
+      piece = player.take_turn(@board)
+      board.find_space(piece.previous[0], piece.previous[1]).piece = nil
+      board.find_space(piece.space[0], piece.space[1]).piece = piece
       board.refresh.display
     end
   end
@@ -22,6 +22,7 @@ class Game
     end
   end
 
+  # pawns = game.players[0].pieces.select {|p| p.class == Pawn}
   def set_pawns(pawns, row)
     @board.spaces[row].each do |space|
       space.piece = pawns.shift

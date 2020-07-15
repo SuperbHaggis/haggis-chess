@@ -7,14 +7,14 @@ class Player
     create_pieces
   end
 
-  def take_turn
+  def take_turn(board)
     choose_space(choose_piece(board))
   end
 
   def choose_piece(board)
     puts ">> #{@color.capitalize} player, choose a piece by coordinate: "
     coord = gets.chomp.split('')
-    board[coord[1]].find { |space| space.index = coord[0] }.piece
+    board.find_space(coord[0], coord[1]).piece
   end
 
   def choose_space(piece)

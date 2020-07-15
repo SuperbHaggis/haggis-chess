@@ -40,7 +40,7 @@ class Board
     puts '  ' + ('A'..'H').to_a.join(' ')
   end
 
-  def find_space(num, letter)
+  def find_space(letter, num)
     @spaces[num].find { |index| index.letter == letter }
   end
 end
