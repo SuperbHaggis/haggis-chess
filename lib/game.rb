@@ -18,19 +18,65 @@ class Game
   def setup
     @players.each do |player|
       if player.color == 'black'
+        set_bishops(player.pieces[:bishops], '8')
+        set_knights(player.pieces[:knights], '8')
         set_pawns(player.pieces[:pawns], '7')
+        set_rooks(player.pieces[:rooks], '8')
+        set_king_queen(player.pieces[:king], player.pieces[:queen], '8')
       else
+        set_bishops(player.pieces[:bishops], '1')
+        set_knights(player.pieces[:knights], '1')
         set_pawns(player.pieces[:pawns], '2')
+        set_rooks(player.pieces[:rooks], '1')
+        set_king_queen(player.pieces[:king], player.pieces[:queen], '1')
       end
+    end
+    set_pieces
+  end
+
+  def set_bishops(bishops, row)
+    bishops_temp = bishops
+    @board.spaces[row].each do |space|
+      space.piece = bishops_temp.shift if space.letter == 'C' && space.piece.nil?
+      space.piece = bishops_temp.shift if space.letter == 'F'
     end
   end
 
-  # pawns = game.players[0].pieces.select {|p| p.class == Pawn}
+  def set_knights(knights, row)
+    knights_temp = knights
+    @board.spaces[row].each do |space|
+      space.piece = knights_temp.shift if space.letter == 'B' && space.piece.nil?
+      space.piece = knights_temp.shift if space.letter == 'G'
+    end
+  end
+
+  def set_rooks(rooks, row)
+    rooks_temp = rooks
+    @board.spaces[row].each do |space|
+      space.piece = rooks_temp.shift if space.letter == 'A' && space.piece.nil?
+      space.piece = rooks_temp.shift if space.letter == 'H'
+    end
+  end
+
   def set_pawns(pawns, row)
     pawns_temp = pawns
     @board.spaces[row].each do |space|
       space.piece = pawns_temp.shift
-      space.piece.space = space.coord
+    end
+  end
+
+  def set_king_queen(king, queen, row)
+    @board.spaces[row].each do |space|
+      space.piece = king if space.letter == 'E'
+      space.piece = queen if space.letter == 'D'
+    end
+  end
+
+  def set_pieces
+    @board.spaces.each do |key, index|
+      index.each do |space|
+        space.piece.space = [space.letter, key.to_s] unless space.piece.nil?
+      end
     end
   end
 end

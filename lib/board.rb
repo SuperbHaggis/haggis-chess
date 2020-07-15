@@ -44,3 +44,6 @@ class Board
     @spaces[num].find { |index| index.letter == letter }
   end
 end
+
+
+
