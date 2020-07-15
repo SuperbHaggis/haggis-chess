@@ -3,8 +3,14 @@ class Player
 
   def initialize(color)
     @color = color
-    @pieces = []
-    create_pieces
+    @pieces = {
+      'bishops': [],
+      'knights': [],
+      'pawns': [],
+      'rooks': []
+    }
+    binding.pry
+    create_pieces(color)
   end
 
   def take_turn(board)
@@ -24,15 +30,15 @@ class Player
     piece
   end
 
-  def create_pieces
-    8.times { @pieces << Pawn.new(color) }
+  def create_pieces(color)
+    8.times { @pieces[:pawns] << Pawn.new(color) }
     2.times do
-      @pieces << Rook.new(color)
-      @pieces << Bishop.new(color)
-      @pieces << Knight.new(color)
+      @pieces[:rooks] << Rook.new(color)
+      @pieces[:bishops] << Bishop.new(color)
+      @pieces[:knights] << Knight.new(color)
     end
-    @pieces << Queen.new(color)
-    @pieces << King.new(color)
-    @pieces.sort! { |a, b| a.class.to_s <=> b.class.to_s }
+    @pieces[:queen] = Queen.new(color)
+    @pieces[:king] = King.new(color)
+    # @pieces.sort! { |a, b| a.class.to_s <=> b.class.to_s }
   end
 end
