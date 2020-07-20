@@ -4,6 +4,8 @@ class Game
   def initialize
     @board = Board.new
     @players = [Player.new('black'), Player.new('white')]
+    setup
+    @board.display
   end
 
   def play_round
@@ -75,7 +77,7 @@ class Game
   def set_pieces
     @board.spaces.each do |key, index|
       index.each do |space|
-        space.piece.space = [space.letter, key.to_s] unless space.piece.nil?
+        space.piece.space = space.coord unless space.piece.nil?
       end
     end
   end
