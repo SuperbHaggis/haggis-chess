@@ -11,23 +11,22 @@ class Game
   def play_round
     @players.each do |player|
       piece = choose_space(choose_piece(player))
-      board.find_space(piece.previous[0], piece.previous[1]).piece = nil
-      board.find_space(piece.space[0], piece.space[1]).piece = piece
-      board.refresh.display
+      board.find_coord(piece.previous).piece = nil
+      board.find_coord(piece.space).piece = piece
+      board.display
     end
   end
 
   def choose_piece(player)
     puts ">> #{player.color.capitalize} player, choose a piece by coordinate: "
-    coord = gets.chomp.split('')
-    @board.find_space(coord[0], coord[1]).piece
+    letter_coord = gets.chomp.split('')
+    @board.find_space(letter_coord[0], letter_coord[1]).piece
   end
 
   def choose_space(piece)
     puts ">> Choose a destination for your #{piece.class}: "
-    coord = gets.chomp.split('')
-    piece.move(coord)
-    binding.pry
+    letter_coord = gets.chomp.split('')
+    piece.move(board.find_space(letter_coord[0], letter_coord[1]).coord)
     piece
   end
 
