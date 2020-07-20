@@ -35,57 +35,44 @@ class Game
   def setup
     @players.each do |player|
       if player.color == 'black'
-        set_bishops(player.pieces[:bishops], '8')
-        set_knights(player.pieces[:knights], '8')
-        set_pawns(player.pieces[:pawns], '7')
-        set_rooks(player.pieces[:rooks], '8')
-        set_king_queen(player.pieces[:king], player.pieces[:queen], '8')
+        set_board(player.pieces[:bishops], '8')
+        set_board(player.pieces[:knights], '8')
+        set_board(player.pieces[:pawns], '7')
+        set_board(player.pieces[:rooks], '8')
+        set_board(player.pieces[:king], '8')
+        set_board(player.pieces[:queen], '8')
       else
-        set_bishops(player.pieces[:bishops], '1')
-        set_knights(player.pieces[:knights], '1')
-        set_pawns(player.pieces[:pawns], '2')
-        set_rooks(player.pieces[:rooks], '1')
-        set_king_queen(player.pieces[:king], player.pieces[:queen], '1')
+        set_board(player.pieces[:bishops], '1')
+        set_board(player.pieces[:knights], '1')
+        set_board(player.pieces[:pawns], '2')
+        set_board(player.pieces[:rooks], '1')
+        set_board(player.pieces[:king], '1')
+        set_board(player.pieces[:queen], '1')
       end
     end
     set_pieces
   end
 
-  def set_bishops(bishops, row)
-    bishops_temp = bishops
+  def set_board(pieces, row)
+    temp = pieces
     @board.spaces[row].each do |space|
-      space.piece = bishops_temp.shift if space.letter == 'C' && space.piece.nil?
-      space.piece = bishops_temp.shift if space.letter == 'F'
-    end
-  end
-
-  def set_knights(knights, row)
-    knights_temp = knights
-    @board.spaces[row].each do |space|
-      space.piece = knights_temp.shift if space.letter == 'B' && space.piece.nil?
-      space.piece = knights_temp.shift if space.letter == 'G'
-    end
-  end
-
-  def set_rooks(rooks, row)
-    rooks_temp = rooks
-    @board.spaces[row].each do |space|
-      space.piece = rooks_temp.shift if space.letter == 'A' && space.piece.nil?
-      space.piece = rooks_temp.shift if space.letter == 'H'
-    end
-  end
-
-  def set_pawns(pawns, row)
-    pawns_temp = pawns
-    @board.spaces[row].each do |space|
-      space.piece = pawns_temp.shift
-    end
-  end
-
-  def set_king_queen(king, queen, row)
-    @board.spaces[row].each do |space|
-      space.piece = king if space.letter == 'E'
-      space.piece = queen if space.letter == 'D'
+      if temp.class == Array
+        if temp[0].class == Bishop
+          space.piece = temp.shift if space.letter == 'C' && space.piece.nil?
+          space.piece = temp.shift if space.letter == 'F'
+        elsif temp[0].class == Knight
+          space.piece = temp.shift if space.letter == 'B' && space.piece.nil?
+          space.piece = temp.shift if space.letter == 'G'
+        elsif temp[0].class == Rook
+          space.piece = temp.shift if space.letter == 'A' && space.piece.nil?
+          space.piece = temp.shift if space.letter == 'H'
+        else
+          space.piece = temp.shift
+        end
+      else
+        space.piece = temp if temp.class == King && space.letter == 'E'
+        space.piece = temp if temp.class == Queen && space.letter == 'D'
+      end
     end
   end
 
