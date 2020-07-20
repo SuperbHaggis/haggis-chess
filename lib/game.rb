@@ -10,11 +10,25 @@ class Game
 
   def play_round
     @players.each do |player|
-      piece = player.take_turn(@board)
+      piece = choose_space(choose_piece(player))
       board.find_space(piece.previous[0], piece.previous[1]).piece = nil
       board.find_space(piece.space[0], piece.space[1]).piece = piece
       board.refresh.display
     end
+  end
+
+  def choose_piece(player)
+    puts ">> #{player.color.capitalize} player, choose a piece by coordinate: "
+    coord = gets.chomp.split('')
+    @board.find_space(coord[0], coord[1]).piece
+  end
+
+  def choose_space(piece)
+    puts ">> Choose a destination for your #{piece.class}: "
+    coord = gets.chomp.split('')
+    piece.move(coord)
+    binding.pry
+    piece
   end
 
   def setup
@@ -75,7 +89,7 @@ class Game
   end
 
   def set_pieces
-    @board.spaces.each do |key, index|
+    @board.spaces.each do |_key, index|
       index.each do |space|
         space.piece.space = space.coord unless space.piece.nil?
       end

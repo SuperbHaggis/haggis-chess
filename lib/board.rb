@@ -39,14 +39,17 @@ class Board
 
   def display
     refresh
-    @spaces.each { |key, index| puts "#{key.to_s} #{index.map(&:image).join(' ')}" }
+    @spaces.each { |k, v| puts "#{k} #{v.map(&:image).join(' ')}" }
     puts '  ' + ('A'..'H').to_a.join(' ')
   end
 
   def find_space(letter, num)
     @spaces[num].find { |index| index.letter == letter }
   end
+
+  def find_coord(coord)
+    space_row = @spaces.find { |_k, v| v.find { |s| s.coord == coord } }
+    space_row.shift
+    space_row[0].find { |space| space.coord == coord }
+  end
 end
-
-
-
