@@ -9,20 +9,23 @@ class Board
     end
   end
 
-  def create_blanks
-    blanks = Array.new(8) { Array.new(8) { [] } }
-    blanks.map! do |row|
-      if blanks.index(row).even?
+  def create_grid
+    grid = Array.new(8) { Array.new(8) { [] } }
+    grid.map! do |row|
+      if grid.index(row).even?
         row.each { |space| row.index(space).even? ? space << 'white' : space << 'black' }
       else
         row.each { |space| row.index(space).even? ? space << 'black' : space << 'white' }
       end
+      row.map! do |space|
+        space << [grid.index(row), row.index(space)]
+      end
     end
-    blanks
+    grid.reverse
   end
 
   def create_spaces
-    spaces = create_blanks.map { |row| row.map { |space| Space.new(space[0]) } }
+    spaces = create_grid.map { |row| row.map { |space| Space.new(space[0], space[1]) } }
     spaces.each do |row|
       letters = ('A'..'H').to_a
       row.each { |space| space.letter = letters.shift }
