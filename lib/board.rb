@@ -9,6 +9,28 @@ class Board
     end
   end
 
+  def display
+    refresh
+    @spaces.each { |k, v| puts "#{k} #{v.map(&:image).join(' ')}" }
+    puts '  ' + ('A'..'H').to_a.join(' ')
+  end
+
+  def find_space(letter, key)
+    @spaces[key].find { |space| space.letter == letter }
+  end
+
+  def find_coord(coord)
+    space_row = @spaces.find { |_k, v| v.find { |s| s.coord == coord } }
+    space_row.shift
+    space_row[0].find { |space| space.coord == coord }
+  end
+
+  private
+
+  def refresh
+    @spaces.each { |_k, row| row.each(&:update) }
+  end
+
   def create_grid
     grid = Array.new(8) { Array.new(8) { [] } }
     grid.map! do |row|
@@ -31,25 +53,5 @@ class Board
       row.each { |space| space.letter = letters.shift }
     end
     spaces
-  end
-
-  def refresh
-    @spaces.each { |_key, index| index.each(&:update) }
-  end
-
-  def display
-    refresh
-    @spaces.each { |k, v| puts "#{k} #{v.map(&:image).join(' ')}" }
-    puts '  ' + ('A'..'H').to_a.join(' ')
-  end
-
-  def find_space(letter, num)
-    @spaces[num].find { |index| index.letter == letter }
-  end
-
-  def find_coord(coord)
-    space_row = @spaces.find { |_k, v| v.find { |s| s.coord == coord } }
-    space_row.shift
-    space_row[0].find { |space| space.coord == coord }
   end
 end

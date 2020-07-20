@@ -17,6 +17,8 @@ class Game
     end
   end
 
+  private
+
   def choose_piece(player)
     puts ">> #{player.color.capitalize} player, choose a piece by coordinate: "
     letter_coord = gets.chomp.split('')
@@ -88,8 +90,8 @@ class Game
   end
 
   def set_pieces
-    @board.spaces.each do |_key, index|
-      index.each do |space|
+    @board.spaces.each do |_k, row|
+      row.each do |space|
         space.piece.space = space.coord unless space.piece.nil?
       end
     end
