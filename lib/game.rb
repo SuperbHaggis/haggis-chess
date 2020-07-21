@@ -35,19 +35,13 @@ class Game
   def setup
     @players.each do |player|
       if player.color == 'black'
-        set_board(player.pieces[:bishops], '8')
-        set_board(player.pieces[:knights], '8')
-        set_board(player.pieces[:pawns], '7')
-        set_board(player.pieces[:rooks], '8')
-        set_board(player.pieces[:king], '8')
-        set_board(player.pieces[:queen], '8')
+        player.pieces.each do |k, v|
+          k == :pawns ? set_board(v, '7') : set_board(v, '8')
+        end
       else
-        set_board(player.pieces[:bishops], '1')
-        set_board(player.pieces[:knights], '1')
-        set_board(player.pieces[:pawns], '2')
-        set_board(player.pieces[:rooks], '1')
-        set_board(player.pieces[:king], '1')
-        set_board(player.pieces[:queen], '1')
+        player.pieces.each do |k, v|
+          k == :pawns ? set_board(v, '2') : set_board(v, '1')
+        end
       end
     end
     set_pieces
