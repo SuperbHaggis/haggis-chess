@@ -20,9 +20,16 @@ class Game
   private
 
   def choose_piece(player)
+    piece_chosen = false
     puts ">> #{player.color.capitalize} player, choose a piece by coordinate: "
-    letter_coord = gets.chomp.split('')
-    @board.find_space(letter_coord[0], letter_coord[1]).piece
+    while piece_chosen == false
+      letter_coord = gets.chomp.split('')
+      if piece?(letter_coord)
+        piece = @board.find_space(letter_coord[0], letter_coord[1]).piece
+        piece_chosen = true if player.color == piece.color
+      end
+    end
+    piece
   end
 
   def choose_space(piece)
@@ -75,6 +82,22 @@ class Game
       row.each do |space|
         space.piece.space = space.coord unless space.piece.nil?
       end
+    end
+  end
+
+  def piece?(letter_coord)
+    if @board.find_space(letter_coord[0], letter_coord[1]).piece.nil?
+      false
+    else
+      true
+    end
+  end
+
+  def right_color?(player, piece)
+    if player.color == piece.color
+      true
+    else
+      false
     end
   end
 end
