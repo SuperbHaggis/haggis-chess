@@ -4,10 +4,10 @@ class Player
   def initialize(color)
     @color = color
     @pieces = {
-      'bishops': [],
-      'knights': [],
-      'pawns': [],
-      'rooks': []
+      bishops: [],
+      knights: [],
+      pawns: [],
+      rooks: []
     }
     create_pieces(color)
   end
@@ -23,5 +23,13 @@ class Player
     end
     @pieces[:queen] = Queen.new(color)
     @pieces[:king] = King.new(color)
+  end
+
+  def capture(foe)
+    @captured << foe
+  end
+
+  def lose(friend)
+    @pieces.find(friend)
   end
 end

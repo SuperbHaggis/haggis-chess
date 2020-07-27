@@ -59,7 +59,7 @@ class Game
   end
 
   def set_board(pieces, row)
-    temp = pieces
+    temp = pieces.class == Array ? pieces.map(&:clone) : pieces
     @board.spaces[row].each do |space|
       if temp.class == Array
         if temp[0].class == Bishop

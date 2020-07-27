@@ -1,9 +1,8 @@
 class Piece
   attr_accessor :color, :image, :space, :moveset, :previous
 
-  def initialize(color, space)
+  def initialize(color)
     @color = color
-    @space = space
   end
 
   def move(space)
