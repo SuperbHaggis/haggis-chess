@@ -30,6 +30,10 @@ class Player
   end
 
   def lose(friend)
-    @pieces.find(friend)
+    @pieces.each do |_k, v|
+      if v.class == Array
+        v.delete(friend) if v.include?(friend)
+      end
+    end
   end
 end
