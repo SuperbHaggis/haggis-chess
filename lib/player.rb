@@ -3,6 +3,7 @@ class Player
 
   def initialize(color)
     @color = color
+    @captured = []
     @pieces = {
       bishops: [],
       knights: [],
@@ -10,6 +11,18 @@ class Player
       rooks: []
     }
     create_pieces(color)
+  end
+
+  def lose(friend)
+    @pieces.each do |_k, v|
+      if v.class == Array
+        v.delete(friend) if v.include?(friend)
+      end
+    end
+  end
+
+  def capture(foe)
+    @captured << foe
   end
 
   private
@@ -23,17 +36,5 @@ class Player
     end
     @pieces[:queen] = Queen.new(color)
     @pieces[:king] = King.new(color)
-  end
-
-  def capture(foe)
-    @captured << foe
-  end
-
-  def lose(friend)
-    @pieces.each do |_k, v|
-      if v.class == Array
-        v.delete(friend) if v.include?(friend)
-      end
-    end
   end
 end
