@@ -25,7 +25,7 @@ class Game
     while piece_chosen == false
       letter_coord = gets.chomp.split('')
       if piece?(letter_coord)
-        piece = @board.find_space(letter_coord[0], letter_coord[1]).piece
+        piece = @board.find_space(letter_coord).piece
         piece_chosen = true if player.color == piece.color
       end
     end
@@ -33,9 +33,13 @@ class Game
   end
 
   def choose_space(piece)
+    space_chosen = false
     puts ">> Choose a destination for your #{piece.class}: "
-    letter_coord = gets.chomp.split('')
-    piece.move(board.find_space(letter_coord[0], letter_coord[1]).coord)
+    while space_chosen == false
+      letter_coord = gets.chomp.split('')
+      space_chosen = true if legal_space?(@board.find_space(letter_coord), piece)
+    end
+    piece.move(@board.find_space(letter_coord).coord)
     piece
   end
 
@@ -86,7 +90,7 @@ class Game
   end
 
   def piece?(letter_coord)
-    if @board.find_space(letter_coord[0], letter_coord[1]).piece.nil?
+    if @board.find_space(letter_coord).piece.nil?
       false
     else
       true
@@ -94,10 +98,10 @@ class Game
   end
 
   def right_color?(player, piece)
-    if player.color == piece.color
-      true
-    else
-      false
-    end
+    player.color == piece.color
+  end
+
+  def legal_space?(space, piece)
+    space.piece.color != piece.color
   end
 end

@@ -15,8 +15,8 @@ class Board
     puts '  ' + ('A'..'H').to_a.join(' ')
   end
 
-  def find_space(letter, k)
-    @spaces[k].find { |space| space.letter == letter }
+  def find_space(coord)
+    @spaces[coord[1]].find { |space| space.letter == coord[0] }
   end
 
   def find_coord(coord)
