@@ -13,10 +13,6 @@ class Player
     create_pieces(color)
   end
 
-  def capture(foe)
-    @captured << foe
-  end
-
   private
 
   def create_pieces(color)

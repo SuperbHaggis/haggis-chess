@@ -39,9 +39,7 @@ class Game
       letter_coord = gets.chomp.split('')
       space_chosen = true if legal_move?(@board.find_space(letter_coord), piece)
     end
-    space = @board.find_space(letter_coord)
-    battle(player, space)
-    piece.move(space.coord)
+    piece.move(@board.find_space(letter_coord).coord)
     piece
   end
 
@@ -109,11 +107,5 @@ class Game
     else
       space.piece.color != piece.color && piece.moveset.include?(piece.space.zip(space.coord).map { |x, y| y - x })
     end
-  end
-
-  def battle(player, space)
-    return if space.piece.nil?
-
-    player.capture(space.piece)
   end
 end
