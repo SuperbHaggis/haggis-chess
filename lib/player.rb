@@ -13,14 +13,6 @@ class Player
     create_pieces(color)
   end
 
-  def lose(friend)
-    @pieces.each do |_k, v|
-      if v.class == Array
-        v.delete(friend) if v.include?(friend)
-      end
-    end
-  end
-
   def capture(foe)
     @captured << foe
   end

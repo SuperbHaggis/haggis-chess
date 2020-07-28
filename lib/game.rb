@@ -10,7 +10,7 @@ class Game
 
   def play_round
     @players.each do |player|
-      piece = choose_space(choose_piece(player))
+      piece = choose_space(choose_piece(player), player)
       board.find_coord(piece.previous).piece = nil
       board.find_coord(piece.space).piece = piece
       board.display
@@ -24,7 +24,7 @@ class Game
     puts ">> #{player.color.capitalize} player, choose a piece by coordinate: "
     while piece_chosen == false
       letter_coord = gets.chomp.split('')
-      if piece?(letter_coord)
+      if occupied?(letter_coord)
         piece = @board.find_space(letter_coord).piece
         piece_chosen = true if player.color == piece.color
       end
@@ -32,14 +32,16 @@ class Game
     piece
   end
 
-  def choose_space(piece)
+  def choose_space(piece, player)
     space_chosen = false
     puts ">> Choose a destination for your #{piece.class}: "
     while space_chosen == false
       letter_coord = gets.chomp.split('')
       space_chosen = true if legal_move?(@board.find_space(letter_coord), piece)
     end
-    piece.move(@board.find_space(letter_coord).coord)
+    space = @board.find_space(letter_coord)
+    battle(player, space)
+    piece.move(space.coord)
     piece
   end
 
@@ -89,7 +91,7 @@ class Game
     end
   end
 
-  def piece?(letter_coord)
+  def occupied?(letter_coord)
     if @board.find_space(letter_coord).piece.nil?
       false
     else
@@ -107,5 +109,11 @@ class Game
     else
       space.piece.color != piece.color
     end
+  end
+
+  def battle(player, space)
+    return if space.piece.nil?
+
+    player.capture(space.piece)
   end
 end
