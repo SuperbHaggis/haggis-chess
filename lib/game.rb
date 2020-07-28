@@ -107,7 +107,7 @@ class Game
     if space.piece.nil?
       true if piece.moveset.include?(piece.space.zip(space.coord).map { |x, y| y - x })
     else
-      space.piece.color != piece.color
+      space.piece.color != piece.color && piece.moveset.include?(piece.space.zip(space.coord).map { |x, y| y - x })
     end
   end
 
