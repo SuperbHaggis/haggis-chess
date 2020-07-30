@@ -55,10 +55,34 @@ class Game
   end
 
   def legal_move?(space, piece)
-    if space.piece.nil?
-      true if piece.moveset.include?(piece.space.zip(space.coord).map { |x, y| y - x })
+    move = piece.space.zip(space.coord).map { |x, y| y - x }
+    if piece.class == Pawn
+      pawn_move(piece, space, move)
     else
-      space.piece.color != piece.color && piece.moveset.include?(piece.space.zip(space.coord).map { |x, y| y - x })
+      others_move(piece, space, move)
+    end
+  end
+
+  def others_move(piece, space, move)
+    # binding.pry
+    if space.piece.nil?
+      true if piece.moveset.include?(move)
+    elsif space.piece.color != piece.color && piece.moveset.include?(move)
+      true
+    else
+      false
+    end
+  end
+
+  def pawn_move(piece, space, move)
+    if space.piece.nil?
+      if piece.moved == false
+        true if piece.first_move.include?(move)
+      else
+        true if piece.moveset == move
+      end
+    elsif space.piece.color != piece.color && piece.capture.include?(move)
+      true
     end
   end
 end
