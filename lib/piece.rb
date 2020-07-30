@@ -6,12 +6,14 @@ class Piece
     @path = []
   end
 
-  def find_path(space)
-    
-  end
-
   def move(space)
     @previous = @space
     @space = space
+  end
+
+  def find_adjacent
+    adjacent = @moveset.select { |move| move.include?(1) || move.include?(-1) }
+    binding.pry
+    adjacent.map! { |move| move.zip(@space) }.map { |pair| pair.map { |x, y| x + y } }
   end
 end

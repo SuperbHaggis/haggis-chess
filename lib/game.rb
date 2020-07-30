@@ -50,21 +50,16 @@ class Game
     end
   end
 
-  def right_color?(player, piece)
-    player == piece.color
-  end
-
   def legal_move?(space, piece)
     move = piece.space.zip(space.coord).map { |x, y| y - x }
     if piece.class == Pawn
-      pawn_move(piece, space, move)
+      pawn_legal?(piece, space, move)
     else
-      others_move(piece, space, move)
+      others_legal?(piece, space, move)
     end
   end
 
-  def others_move(piece, space, move)
-    # binding.pry
+  def others_legal?(piece, space, move)
     if space.piece.nil?
       true if piece.moveset.include?(move)
     elsif space.piece.color != piece.color && piece.moveset.include?(move)
@@ -74,7 +69,7 @@ class Game
     end
   end
 
-  def pawn_move(piece, space, move)
+  def pawn_legal?(piece, space, move)
     if space.piece.nil?
       if piece.moved == false
         true if piece.first_move.include?(move)
@@ -84,5 +79,9 @@ class Game
     elsif space.piece.color != piece.color && piece.capture.include?(move)
       true
     end
+  end
+
+  def clear_path?(piece, space, move)
+    
   end
 end
