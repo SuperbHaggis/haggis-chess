@@ -13,20 +13,4 @@ class Piece
     @previous = @space
     @space = space
   end
-
-  def build_tree(start, finish, coord = @start)
-    find_adjacent(coord)
-    @visited << coord
-    return square if square == finish
-
-    @visited.each { |square| @queue << child }
-    build_tree(start, finish, @queue.shift)
-  end
-
-  private
-
-  def find_adjacent(space = @space)
-    adjacent = @moveset.select { |move| move.include?(1) || move.include?(-1) }
-    adjacent.map! { |move| move.zip(space) }.map { |pair| pair.map { |x, y| x + y } }
-  end
 end
