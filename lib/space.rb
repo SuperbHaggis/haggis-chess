@@ -1,5 +1,6 @@
 class Space
-  attr_accessor :coord, :color, :image, :default_image, :piece, :letter
+  attr_accessor :coord, :color, :image, :default_image, :piece, :letter,
+                :adjacent
 
   def initialize(color, coord)
     @color = color
@@ -7,6 +8,7 @@ class Space
     @default_image = @color == 'white' ? '■' : '□'
     @image = @default_image
     @piece = nil
+    @adjacent = []
   end
 
   def update
