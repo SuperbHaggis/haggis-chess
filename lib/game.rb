@@ -10,7 +10,7 @@ class Game
   def play_round
     @players.each do |player|
       piece = choose_space(choose_piece(player))
-      board.find_coord(piece.previous).piece = nil
+      board.find_coord(piece.previous.coord).piece = nil
       board.find_coord(piece.space).piece = piece
       board.display
     end
@@ -51,7 +51,7 @@ class Game
   end
 
   def legal_move?(space, piece)
-    move = piece.space.zip(space.coord).map { |x, y| y - x }
+    move = piece.space.coord.zip(space.coord).map { |x, y| y - x }
     if piece.class == Pawn
       pawn_legal?(piece, space, move)
     else
