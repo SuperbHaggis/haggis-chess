@@ -11,7 +11,7 @@ class Game
     @players.each do |player|
       piece = choose_space(choose_piece(player))
       board.find_by_coord(piece.previous.coord).piece = nil
-      board.find_by_coord(piece.space).piece = piece
+      board.find_by_coord(piece.space.coord).piece = piece
       board.display
     end
   end

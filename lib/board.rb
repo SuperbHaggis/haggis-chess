@@ -1,13 +1,10 @@
 class Board
-  attr_accessor :spaces, :pieces
+  attr_accessor :spaces, :pieces, :queue
 
   def initialize
-    @spaces = Hash.new
-    spaces = create_spaces
-    ('1'..'8').to_a.reverse.each do |num|
-      @spaces[num] = spaces.shift
-    end
+    generate
     @pieces = []
+    @queue = []
     create_pieces('black')
     create_pieces('white')
     setup
@@ -28,6 +25,21 @@ class Board
     space_row = @spaces.find { |_k, v| v.find { |s| s.coord == coord } }
     space_row.shift
     space_row[0].find { |space| space.coord == coord }
+  end
+
+  # test
+  def clear_path?(piece, space)
+    build_tree(piece, space) == space
+  end
+
+  def build_tree(piece, finish, space = piece.space)
+    return space if space == finish
+
+    binding.pry
+    space.find_adjacent(piece)
+    piece.visited << space
+    piece.visited.each { |square| @queue << square }
+    build_tree(piece, finish, @queue.shift)
   end
 
   private
@@ -59,6 +71,14 @@ class Board
       row.each { |space| space.letter = letters.shift }
     end
     spaces
+  end
+
+  def generate
+    @spaces = {}
+    spaces = create_spaces
+    ('1'..'8').to_a.reverse.each do |num|
+      @spaces[num] = spaces.shift
+    end
   end
 
   # Piece creation and setup
@@ -113,13 +133,3 @@ class Board
     end
   end
 end
-
-#def clear_path?
- # 
-#end
-#
-#def find_moves(piece, space = piece.space)
-#  space.adjacent = piece.adjacent.map { |coord| find_coord(coord) }
-#  space.adjacent.reject! { |adj| piece.visited.any? { |square| square.coord == adj.coord } }
-#  space
-#end

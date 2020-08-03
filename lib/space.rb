@@ -18,4 +18,18 @@ class Space
   def occupied?
     !@piece.nil?
   end
+
+  def find_adjacent(piece, board)
+    # find adjacent coords
+    coords = piece.moveset.select { |move| move.include?(1) || move.include?(-1) }
+    coords.map! { |move| move.zip(@coord) }.map! { |pair| pair.map { |x, y| x + y } }
+    coords.select! { |coord| (0..7).include?(coord[0]) && (0..7).include?(coord[1]) }
+    @adjacent = coords.map { |coord| board.find_by_coord(coord) }
+    binding.pry
+  end
+
+  def find_moves(square)
+    square.children.reject! { |node| @visited.any? { |space| space.coord == node.coord } }
+    square
+  end
 end
