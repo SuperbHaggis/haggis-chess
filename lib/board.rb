@@ -7,20 +7,7 @@ class Board
     ('1'..'8').to_a.reverse.each do |num|
       @spaces[num] = spaces.shift
     end
-    @pieces = {
-      white: {
-        bishops: [],
-        knights: [],
-        pawns: [],
-        rooks: []
-      },
-      black: {
-        bishops: [],
-        knights: [],
-        pawns: [],
-        rooks: []
-      }
-    }
+    @pieces = []
     create_pieces('black')
     create_pieces('white')
     setup
@@ -73,51 +60,44 @@ class Board
   end
 
   def create_pieces(color)
-    colorsym = color.to_sym
-    8.times { @pieces[colorsym][:pawns] << Pawn.new(color) }
+    8.times { @pieces << Pawn.new(color) }
     2.times do
-      @pieces[colorsym][:rooks] << Rook.new(color)
-      @pieces[colorsym][:bishops] << Bishop.new(color)
-      @pieces[colorsym][:knights] << Knight.new(color)
+      @pieces << Rook.new(color)
+      @pieces << Bishop.new(color)
+      @pieces << Knight.new(color)
     end
-    @pieces[colorsym][:queen] = Queen.new(color)
-    @pieces[colorsym][:king] = King.new(color)
+    @pieces << Queen.new(color)
+    @pieces << King.new(color)
   end
 
   def setup
-    @pieces.each do |color, type|
-      if color == :black
-        type.each do |k, v|
-          k == :pawns ? set_board(v, '7') : set_board(v, '8')
-        end
+    @pieces.each do |piece|
+      if piece.color == 'black'
+        piece.class == Pawn ? set_board(piece, '7') : set_board(piece, '8')
       else
-        type.each do |k, v|
-          k == :pawns ? set_board(v, '2') : set_board(v, '1')
-        end
+        piece.class == Pawn ? set_board(piece, '2') : set_board(piece, '1')
       end
     end
     set_pieces
   end
 
-  def set_board(pieces, row)
-    temp = pieces.class == Array ? pieces.map(&:clone) : pieces
+  def set_board(piece, row)
     spaces[row].each do |space|
-      if temp.class == Array
-        if temp[0].class == Bishop
-          space.piece = temp.shift if space.letter == 'C' && space.piece.nil?
-          space.piece = temp.shift if space.letter == 'F'
-        elsif temp[0].class == Knight
-          space.piece = temp.shift if space.letter == 'B' && space.piece.nil?
-          space.piece = temp.shift if space.letter == 'G'
-        elsif temp[0].class == Rook
-          space.piece = temp.shift if space.letter == 'A' && space.piece.nil?
-          space.piece = temp.shift if space.letter == 'H'
-        else
-          space.piece = temp.shift
-        end
+      if piece.class == Bishop
+        space.piece = piece if space.letter == 'C' && space.piece.nil?
+        space.piece = piece if space.letter == 'F'
+      elsif piece.class == Knight
+        space.piece = piece if space.letter == 'B' && space.piece.nil?
+        space.piece = piece if space.letter == 'G'
+      elsif piece.class == Rook
+        space.piece = piece if space.letter == 'A' && space.piece.nil?
+        space.piece = piece if space.letter == 'H'
+      elsif piece.class == King
+        space.piece = piece if space.letter == 'E'
+      elsif piece.class == Queen
+        space.piece = piece if space.letter == 'D'
       else
-        space.piece = temp if temp.class == King && space.letter == 'E'
-        space.piece = temp if temp.class == Queen && space.letter == 'D'
+        space.piece = piece
       end
     end
   end
