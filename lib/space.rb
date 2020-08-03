@@ -14,4 +14,8 @@ class Space
   def update
     @image = @piece.nil? ? @default_image : @piece.image
   end
+
+  def occupied?
+    !@piece.nil?
+  end
 end

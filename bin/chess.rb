@@ -2,7 +2,6 @@ Dir['/home/turner/odin-project/haggis-chess/lib/*.rb'].each { |file| require fil
 require 'pry'
 
 game = Game.new
-binding.pry
 gameover = false
 game.play_round while gameover == false
 binding.pry

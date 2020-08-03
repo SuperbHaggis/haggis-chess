@@ -29,4 +29,17 @@ class Pawn < Piece
     @space = space
     @moved = true if @moved == false
   end
+
+  def legal_move?(space)
+    move = @space.coord.zip(space.coord).map { |x, y| y - x }
+    if space.piece.nil?
+      if @moved == false
+        true if @first_move.include?(move)
+      else
+        true if @moveset == move
+      end
+    elsif space.piece.color != @color && @capture.include?(move)
+      true
+    end
+  end
 end

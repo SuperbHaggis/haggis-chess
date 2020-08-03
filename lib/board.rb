@@ -19,11 +19,12 @@ class Board
     puts '  ' + ('A'..'H').to_a.join(' ')
   end
 
+  # Search methods
   def find_space(coord)
     @spaces[coord[1]].find { |space| space.letter == coord[0] }
   end
 
-  def find_coord(coord)
+  def find_by_coord(coord)
     space_row = @spaces.find { |_k, v| v.find { |s| s.coord == coord } }
     space_row.shift
     space_row[0].find { |space| space.coord == coord }
@@ -35,6 +36,7 @@ class Board
     @spaces.each { |_k, row| row.each(&:update) }
   end
 
+  # grid and Space creation
   def create_grid
     grid = Array.new(8) { Array.new(8) { [] } }
     grid.map! do |row|
@@ -59,6 +61,7 @@ class Board
     spaces
   end
 
+  # Piece creation and setup
   def create_pieces(color)
     8.times { @pieces << Pawn.new(color) }
     2.times do
@@ -110,3 +113,13 @@ class Board
     end
   end
 end
+
+#def clear_path?
+ # 
+#end
+#
+#def find_moves(piece, space = piece.space)
+#  space.adjacent = piece.adjacent.map { |coord| find_coord(coord) }
+#  space.adjacent.reject! { |adj| piece.visited.any? { |square| square.coord == adj.coord } }
+#  space
+#end
