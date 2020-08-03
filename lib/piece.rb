@@ -1,9 +1,12 @@
 class Piece
-  attr_accessor :color, :image, :space, :moveset, :previous
+  attr_accessor :color, :image, :space, :moveset, :previous, :adjacent,
+                :visited, :queue
 
   def initialize(color)
     @color = color
-    @path = []
+    @adjacent = find_adjacent
+    @visited = []
+    @queue = []
   end
 
   def move(space)
@@ -11,9 +14,19 @@ class Piece
     @space = space
   end
 
-  def find_adjacent
+  def build_tree(start, finish, coord = @start)
+    find_adjacent(coord)
+    @visited << coord
+    return square if square == finish
+
+    @visited.each { |square| @queue << child }
+    build_tree(start, finish, @queue.shift)
+  end
+
+  private
+
+  def find_adjacent(space = @space)
     adjacent = @moveset.select { |move| move.include?(1) || move.include?(-1) }
-    binding.pry
-    adjacent.map! { |move| move.zip(@space) }.map { |pair| pair.map { |x, y| x + y } }
+    adjacent.map! { |move| move.zip(space) }.map { |pair| pair.map { |x, y| x + y } }
   end
 end
