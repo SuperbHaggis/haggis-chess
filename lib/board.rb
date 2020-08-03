@@ -125,7 +125,7 @@ class Board
   def set_pieces
     spaces.each do |_k, row|
       row.each do |space|
-        space.piece.space = space.coord unless space.piece.nil?
+        space.piece.space = space unless space.piece.nil?
       end
     end
   end
