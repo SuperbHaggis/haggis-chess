@@ -96,39 +96,41 @@ class Board
   def setup
     @pieces.each do |piece|
       if piece.color == 'black'
-        piece.class == Pawn ? set_board(piece, '7') : set_board(piece, '8')
+        piece.class == Pawn ? set_pawn(piece, '7') : set_board(piece, '8')
       else
-        piece.class == Pawn ? set_board(piece, '2') : set_board(piece, '1')
+        piece.class == Pawn ? set_pawn(piece, '2') : set_board(piece, '1')
       end
     end
-    set_pieces
   end
 
   def set_board(piece, row)
-    spaces[row].each do |space|
-      if piece.class == Bishop
-        space.piece = piece if space.letter == 'C' && space.piece.nil?
-        space.piece = piece if space.letter == 'F'
-      elsif piece.class == Knight
-        space.piece = piece if space.letter == 'B' && space.piece.nil?
-        space.piece = piece if space.letter == 'G'
-      elsif piece.class == Rook
-        space.piece = piece if space.letter == 'A' && space.piece.nil?
-        space.piece = piece if space.letter == 'H'
-      elsif piece.class == King
-        space.piece = piece if space.letter == 'E'
-      elsif piece.class == Queen
-        space.piece = piece if space.letter == 'D'
-      else
-        space.piece = piece
-      end
+    if piece.class == Bishop
+      space = find_space(['C', row])
+      space.piece.nil? ? space.piece = piece : find_space(['F', row]).piece = piece
+      space.piece.space = space
+    elsif piece.class == Knight
+      space = find_space(['B', row])
+      space.piece.nil? ? space.piece = piece : find_space(['G', row]).piece = piece
+      space.piece.space = space
+    elsif piece.class == Rook
+      space = find_space(['A', row])
+      space.piece.nil? ? space.piece = piece : find_space(['H', row]).piece = piece
+      space.piece.space = space
+    elsif piece.class == King
+      find_space(['E', row]).piece = piece
+      find_space(['E', row]).piece.space = space
+    else
+      find_space(['D', row]).piece = piece
+      find_space(['D', row]).piece.space = space
     end
   end
 
-  def set_pieces
-    spaces.each do |_k, row|
-      row.each do |space|
-        space.piece.space = space unless space.piece.nil?
+  def set_pawn(piece, row)
+    @spaces[row].map do |space|
+      if space.piece.nil?
+        space.piece = piece
+        space.piece.space = space
+        break
       end
     end
   end
