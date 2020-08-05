@@ -3,7 +3,7 @@ require 'pry'
 
 game = Game.new
 # game.board.build_tree(piece1, space2, space1)
-binding.pry
+#binding.pry
 gameover = false
 game.play_round while gameover == false
 binding.pry

@@ -23,7 +23,7 @@ class Piece
   def legal_move?(space)
     move = @space.coord.zip(space.coord).map { |x, y| y - x }
     if space.piece.nil?
-      true if @moveset.include?(move)
+      return true if @moveset.include?(move)
     elsif space.piece.color != @color && @moveset.include?(move)
       true
     else

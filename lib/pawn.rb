@@ -35,8 +35,8 @@ class Pawn < Piece
     if space.piece.nil?
       if @moved == false
         true if @first_move.include?(move)
-      else
-        true if @moveset == move
+      elsif @moveset.include?(move)
+        true
       end
     elsif space.piece.color != @color && @capture.include?(move)
       true

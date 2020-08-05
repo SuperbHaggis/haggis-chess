@@ -36,7 +36,6 @@ class Game
     puts ">> Choose a destination for your #{piece.class}: "
     while space_chosen == false
       letter_coord = gets.chomp.split('')
-      # binding.pry
       space_chosen = true if piece.legal_move?(@board.find_space(letter_coord))
     end
     piece.move(@board.find_space(letter_coord))
