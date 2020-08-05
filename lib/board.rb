@@ -105,17 +105,17 @@ class Board
 
   def set_board(piece, row)
     if piece.class == Bishop
-      space = find_space(['C', row])
-      space.piece.nil? ? space.piece = piece : find_space(['F', row]).piece = piece
-      space.piece.space = space
+      space = find_space(['C', row]).piece.nil? ? find_space(['C', row]) : find_space(['F', row])
+      space.piece = piece
+      piece.space = space
     elsif piece.class == Knight
-      space = find_space(['B', row])
-      space.piece.nil? ? space.piece = piece : find_space(['G', row]).piece = piece
-      space.piece.space = space
+      space = find_space(['B', row]).piece.nil? ? find_space(['B', row]) : find_space(['G', row])
+      space.piece = piece
+      piece.space = space
     elsif piece.class == Rook
-      space = find_space(['A', row])
-      space.piece.nil? ? space.piece = piece : find_space(['H', row]).piece = piece
-      space.piece.space = space
+      space = find_space(['A', row]).piece.nil? ? find_space(['A', row]) : find_space(['H', row])
+      space.piece = piece
+      piece.space = space
     elsif piece.class == King
       find_space(['E', row]).piece = piece
       find_space(['E', row]).piece.space = space
