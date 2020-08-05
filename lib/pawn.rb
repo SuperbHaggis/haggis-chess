@@ -7,9 +7,9 @@ class Pawn < Piece
     @color = color
     @image = color == 'white' ? '♟' : '♙'
     @moveset = if @color == 'white'
-                 [1, 0]
+                 [[1, 0]]
                else
-                 [-1, 0]
+                 [[-1, 0]]
                end
     @capture = if @color == 'white'
                  [[1, -1], [1, 1]]

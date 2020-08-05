@@ -25,7 +25,7 @@ class Game
       letter_coord = gets.chomp.split('')
       if board.find_space(letter_coord).occupied?
         piece = @board.find_space(letter_coord).piece
-        piece_chosen = true if player == piece.color
+        piece_chosen = true if player == piece.color && piece.moveable?(@board)
       end
     end
     piece
@@ -38,7 +38,7 @@ class Game
       letter_coord = gets.chomp.split('')
       space_chosen = true if piece.legal_move?(@board.find_space(letter_coord))
     end
-    piece.move(@board.find_space(letter_coord).coord)
+    piece.move(@board.find_space(letter_coord))
     piece
   end
 end
