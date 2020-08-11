@@ -15,14 +15,14 @@ class Space
     @image = @piece.nil? ? @default_image : @piece.image
   end
 
-  def find_adjacent(board)
+  def find_adjacent(board, piece = @piece)
     @adjacent.clear
-    coords = if @piece.class == Knight
+    coords = if piece.class == Knight
                Marshal.load(Marshal.dump(@piece.moveset))
-             elsif @piece.class == Pawn
-               @piece.moved ? Marshal.load(Marshal.dump(@piece.moveset)) : Marshal.load(Marshal.dump(@piece.first_move))
+             elsif piece.class == Pawn
+               piece.moved ? Marshal.load(Marshal.dump(@piece.moveset)) : Marshal.load(Marshal.dump(@piece.first_move))
              else
-               @piece.moveset.select { |move| move.include?(1) || move.include?(-1) }
+               piece.moveset.select { |move| move.include?(1) || move.include?(-1) }
              end
     coords.map! { |move| move.zip(@coord) }.map! { |pair| pair.map { |x, y| x + y } }
     coords.select! { |coord| (0..7).include?(coord[0]) && (0..7).include?(coord[1]) }

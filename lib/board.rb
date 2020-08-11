@@ -1,10 +1,11 @@
 class Board
-  attr_accessor :spaces, :pieces, :queue
+  attr_accessor :spaces, :pieces, :queue, :searched
 
   def initialize
     generate
     @pieces = []
     @queue = []
+    @searched = []
     create_pieces('black')
     create_pieces('white')
     setup
@@ -28,18 +29,28 @@ class Board
   end
 
   # test
-  def clear_path?(piece, space)
-    build_tree(piece, space) == space
+  def clear_path?(piece, finish)
+    build_tree(piece, finish) == finish
   end
 
-  def build_tree(piece, finish, space = piece.space)
-    return space if space == finish
+  # build tree of possible moves from piece's space to destination space
+  def build_tree(piece, finish, space = piece.space, board = self)
+    space.find_adjacent(board, piece)
+    @searched << space
+    return space if space.adjacent.include?(finish)
 
-    binding.pry
-    space.find_adjacent(piece)
-    piece.visited << space
-    piece.visited.each { |square| @queue << square }
+    space.adjacent.each { |square| @queue << square }
     build_tree(piece, finish, @queue.shift)
+  end
+
+  def build_path(piece, space)
+    return if space.nil?
+
+    # binding.pry
+    piece.path << space
+    # binding.pry
+    parent = @searched.select { |square| square.adjacent.include?(space) }
+    build_path(piece, parent[0])
   end
 
   private

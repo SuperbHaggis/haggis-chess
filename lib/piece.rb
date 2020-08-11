@@ -1,9 +1,9 @@
 class Piece
-  attr_accessor :color, :image, :moveset, :space, :previous, :visited
+  attr_accessor :color, :image, :moveset, :space, :previous, :path
 
   def initialize(color)
     @color = color
-    @visited = []
+    @path = []
   end
 
   def move(space)
