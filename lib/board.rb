@@ -37,18 +37,16 @@ class Board
   def build_tree(piece, finish, space = piece.space, board = self)
     space.find_adjacent(board, piece)
     @searched << space
-    return space if space.adjacent.include?(finish)
+    return space if space == finish
 
     space.adjacent.each { |square| @queue << square }
     build_tree(piece, finish, @queue.shift)
   end
 
   def build_path(piece, space)
-    return if space.nil?
+    return if piece.space == space
 
-    # binding.pry
     piece.path << space
-    # binding.pry
     parent = @searched.select { |square| square.adjacent.include?(space) }
     build_path(piece, parent[0])
   end
