@@ -22,6 +22,7 @@ class Pawn < Piece
                     [[-1, 0], [-2, 0]]
                   end
     @moved = false
+    @path = []
   end
 
   def move(space)
@@ -30,15 +31,15 @@ class Pawn < Piece
     @moved = true if @moved == false
   end
 
-  def legal_move?(space)
+  def legal_move?(space, board)
     move = @space.coord.zip(space.coord).map { |x, y| y - x }
     if space.piece.nil?
       if @moved == false
-        true if @first_move.include?(move)
-      elsif @moveset.include?(move)
+        true if @first_move.include?(move) && board.clear_path?(self, space)
+      elsif @moveset.include?(move) && board.clear_path?(self, space)
         true
       end
-    elsif space.piece.color != @color && @capture.include?(move)
+    elsif space.piece.color != @color && @capture.include?(move) && board.clear_path?(self, space)
       true
     end
   end

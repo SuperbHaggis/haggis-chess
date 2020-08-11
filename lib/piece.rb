@@ -20,12 +20,12 @@ class Piece
     adjacent.any? { |space| !space.occupied? }
   end
 
-  def legal_move?(space)
+  def legal_move?(space, board)
     move = @space.coord.zip(space.coord).map { |x, y| y - x }
     if space.piece.nil?
-      return true if @moveset.include?(move)
-    elsif space.piece.color != @color && @moveset.include?(move)
-      true
+      true if @moveset.include?(move) && board.clear_path?(self, space)
+    elsif space.piece.color != @color
+      true if @moveset.include?(move) && board.clear_path?(self, space)
     else
       false
     end

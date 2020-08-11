@@ -18,9 +18,9 @@ class Space
   def find_adjacent(board, piece = @piece)
     @adjacent.clear
     coords = if piece.class == Knight
-               Marshal.load(Marshal.dump(@piece.moveset))
+               Marshal.load(Marshal.dump(piece.moveset))
              elsif piece.class == Pawn
-               piece.moved ? Marshal.load(Marshal.dump(@piece.moveset)) : Marshal.load(Marshal.dump(@piece.first_move))
+               piece.moved ? Marshal.load(Marshal.dump(piece.moveset)) : Marshal.load(Marshal.dump(piece.first_move))
              else
                piece.moveset.select { |move| move.include?(1) || move.include?(-1) }
              end
