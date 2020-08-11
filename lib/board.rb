@@ -30,7 +30,8 @@ class Board
 
   # test
   def clear_path?(piece, finish)
-    build_tree(piece, finish) == finish
+    build_path(piece, build_tree(piece, finish))
+    piece.path.none? { |space| !space.piece.nil? }
   end
 
   # build tree of possible moves from piece's space to destination space
