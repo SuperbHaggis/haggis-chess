@@ -124,7 +124,7 @@ class Board
 
   # creation of search tree
   def build_tree(piece, finish, space = piece.space, board = self)
-    space.find_adjacent(board, piece)
+    piece.class == Queen ? space.find_adjacent_queen(board, finish, piece) : space.find_adjacent(board, piece)
     @searched << space
     return space if space == finish
 

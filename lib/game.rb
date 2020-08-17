@@ -23,7 +23,7 @@ class Game
     puts ">> #{player.capitalize} player, choose a piece by coordinate: "
     while piece_chosen == false
       letter_coord = gets.chomp.capitalize.split('')
-      if board.find_space(letter_coord).occupied?
+      if @board.find_space(letter_coord).occupied?
         piece = @board.find_space(letter_coord).piece
         piece_chosen = true if player == piece.color && piece.moveable?(@board)
       end
@@ -36,8 +36,9 @@ class Game
     puts ">> Choose a destination for your #{piece.class}: "
     while space_chosen == false
       letter_coord = gets.chomp.capitalize.split('')
-      piece.legal_move?(@board.find_space(letter_coord), board)
-      space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), board)
+      # piece.legal_move?(@board.find_space(letter_coord), board)
+      # binding.pry
+      space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
     end
     piece.move(@board.find_space(letter_coord))
     piece

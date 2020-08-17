@@ -29,6 +29,25 @@ class Space
     @adjacent = coords.map { |coord| board.find_by_coord(coord) }
   end
 
+  def find_adjacent_queen(board, finish = nil, piece = @piece)
+    @adjacent.clear
+    coords = if finish.nil?
+               piece.moveset.select { |move| move.include?(1) || move.include?(-1) }
+             else
+               distance = piece.space.coord.zip(finish.coord).map { |x, y| y - x }
+               if piece.moveset[0..27].include?(distance)
+                 piece.moveset[0..27].select { |move| move.include?(1) || move.include?(-1) }
+               elsif piece.moveset[28..41].include?(distance)
+                 piece.moveset[28..41].select { |move| move.include?(1) || move.include?(-1) }
+               else
+                 piece.moveset[42..-1].select { |move| move.include?(1) || move.include?(-1) }
+               end
+             end
+    coords.map! { |move| move.zip(@coord) }.map! { |pair| pair.map { |x, y| x + y } }
+    coords.select! { |coord| (0..7).include?(coord[0]) && (0..7).include?(coord[1]) }
+    @adjacent = coords.map { |coord| board.find_by_coord(coord) }
+  end
+
   def find_moves(square)
     square.children.reject! { |node| @visited.any? { |space| space.coord == node.coord } }
     square
