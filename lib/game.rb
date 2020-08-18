@@ -13,6 +13,7 @@ class Game
       board.find_by_coord(piece.previous.coord).piece = nil
       board.find_by_coord(piece.space.coord).piece = piece
       board.display
+      check?(piece)
     end
   end
 
@@ -36,11 +37,17 @@ class Game
     puts ">> Choose a destination for your #{piece.class}: "
     while space_chosen == false
       letter_coord = gets.chomp.capitalize.split('')
-      # piece.legal_move?(@board.find_space(letter_coord), board)
-      # binding.pry
       space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
     end
     piece.move(@board.find_space(letter_coord))
     piece
+  end
+
+  def check?(piece)
+    king = @board.pieces.find { |p| p.class == King && p.color != piece.color }
+    foes = @board.pieces.select { |p2| p2.color == piece.color }
+    check = foes.any? { |foe| foe.legal_move?(king.space, @board) }
+    puts '>> Check!' if check == true
+    check
   end
 end

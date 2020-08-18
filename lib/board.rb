@@ -29,6 +29,7 @@ class Board
 
   def clear_path?(piece, finish)
     build_path(piece, build_tree(piece, finish))
+    piece.path.reject! { |space| space == finish }
     boolean = piece.path.none? { |space| !space.piece.nil? }
     @arrays.each(&:clear)
     piece.path.clear
