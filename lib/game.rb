@@ -1,9 +1,10 @@
 class Game
-  attr_accessor :board, :players
+  attr_accessor :board, :players, :checkmate
 
   def initialize
     @board = Board.new
     @players = %w[black white]
+    @checkmate = false
     @board.display
   end
 
@@ -13,8 +14,13 @@ class Game
       piece.previous.piece = nil
       piece.space.piece = piece
       board.display
-      check?(player) unless checkmate?(player)
+      checkmate?(player) ? @checkmate = true : check?(player)
+      break if @checkmate == true
     end
+  end
+
+  def play
+    play_round while @checkmate == false
   end
 
   private
@@ -55,12 +61,10 @@ class Game
     king = @board.pieces.find { |p| p.class == King && p.color != color }
     foes = @board.pieces.select { |p2| p2.color == color }
     adj = king.space.find_adjacent(@board)
-    binding.pry
     adj.select! { |space| king.legal_move?(space, @board) }
     adj << king.space
-    binding.pry
     checkmate = if adj.size == 1
-                  foes.any? { |foe| foe.moveable? && foe.legal_move?(adj[0], @board) }
+                  foes.any? { |foe| foe.moveable?(@board) && foe.legal_move?(adj[0], @board) }
                 else
                   adj.map! { |move| foes.any? { |foe| foe.legal_move?(move, @board) } }
                   adj.all?(true)
