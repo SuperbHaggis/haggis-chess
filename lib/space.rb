@@ -27,6 +27,7 @@ class Space
     coords.map! { |move| move.zip(@coord) }.map! { |pair| pair.map { |x, y| x + y } }
     coords.select! { |coord| (0..7).include?(coord[0]) && (0..7).include?(coord[1]) }
     @adjacent = coords.map { |coord| board.find_by_coord(coord) }
+    @adjacent
   end
 
   def find_adjacent_queen(board, finish = nil, piece = @piece)

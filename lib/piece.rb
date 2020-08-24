@@ -22,9 +22,7 @@ class Piece
 
   def legal_move?(space, board)
     move = @space.coord.zip(space.coord).map { |x, y| y - x }
-    if space.piece.nil?
-      true if @moveset.include?(move) && board.clear_path?(self, space)
-    elsif space.piece.color != @color
+    if space.piece.nil? || space.piece.color != @color
       true if @moveset.include?(move) && board.clear_path?(self, space)
     else
       false
