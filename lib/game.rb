@@ -29,10 +29,13 @@ class Game
     piece_chosen = false
     puts ">> #{player.capitalize} player, choose a piece by coordinate: "
     while piece_chosen == false
-      letter_coord = gets.chomp.capitalize.split('')
-      if @board.find_space(letter_coord).occupied?
-        piece = @board.find_space(letter_coord).piece
-        piece_chosen = true if player == piece.color && piece.moveable?(@board)
+      input = Hag.new.run(board)
+      unless input.nil?
+        letter_coord = input.capitalize.split('')
+        if @board.find_space(letter_coord).occupied?
+          piece = @board.find_space(letter_coord).piece
+          piece_chosen = true if player == piece.color && piece.moveable?(@board)
+        end
       end
     end
     piece
@@ -42,8 +45,11 @@ class Game
     space_chosen = false
     puts ">> Choose a destination for your #{piece.class}: "
     while space_chosen == false
-      letter_coord = gets.chomp.capitalize.split('')
-      space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
+      input = Hag.new.run(board)
+      unless input.nil?
+        letter_coord = input.capitalize.split('')
+        space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
+      end
     end
     piece.move(@board.find_space(letter_coord))
     piece
