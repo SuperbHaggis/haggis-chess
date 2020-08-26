@@ -39,7 +39,7 @@ class Pawn < Piece
       elsif @moveset.include?(move) && board.clear_path?(self, space)
         true
       end
-    elsif space.piece.color != @color && @capture.include?(move) && board.clear_path?(self, space)
+    elsif space.piece.color != @color && @capture.include?(move)
       true
     end
   end
