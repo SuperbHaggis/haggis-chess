@@ -1,0 +1,1870 @@
+---
+'8':
+- &1 !ruby/object:Space
+  color: black
+  coord:
+  - 7
+  - 0
+  default_image: "□"
+  image: "♖"
+  piece: !ruby/object:Rook
+    color: black
+    image: "♖"
+    moveset:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *1
+  adjacent:
+  - &2 !ruby/object:Space
+    color: white
+    coord:
+    - 7
+    - 1
+    default_image: "■"
+    image: "♘"
+    piece: !ruby/object:Knight
+      color: black
+      image: "♘"
+      moveset:
+      - - 1
+        - 2
+      - - -1
+        - -2
+      - - 2
+        - 1
+      - - -2
+        - -1
+      - - 1
+        - -2
+      - - 2
+        - -1
+      - - -1
+        - 2
+      - - -2
+        - 1
+      path: []
+      space: *2
+    adjacent:
+    - &4 !ruby/object:Space
+      color: black
+      coord:
+      - 5
+      - 0
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent:
+      - &3 !ruby/object:Space
+        color: white
+        coord:
+        - 4
+        - 0
+        default_image: "■"
+        image: "♙"
+        piece: !ruby/object:Pawn
+          color: black
+          image: "♙"
+          moveset:
+          - - -1
+            - 0
+          capture:
+          - - -1
+            - -1
+          - - -1
+            - 1
+          first_move:
+          - - -1
+            - 0
+          - - -2
+            - 0
+          moved: true
+          path: []
+          space: *3
+          previous: &7 !ruby/object:Space
+            color: white
+            coord:
+            - 6
+            - 0
+            default_image: "■"
+            image: "■"
+            piece: 
+            adjacent:
+            - *4
+            - *3
+            letter: A
+        adjacent:
+        - &5 !ruby/object:Space
+          color: black
+          coord:
+          - 3
+          - 0
+          default_image: "□"
+          image: "□"
+          piece: 
+          adjacent: []
+          letter: A
+        letter: A
+      - *5
+      letter: A
+    - &6 !ruby/object:Space
+      color: black
+      coord:
+      - 6
+      - 3
+      default_image: "□"
+      image: "♙"
+      piece: !ruby/object:Pawn
+        color: black
+        image: "♙"
+        moveset:
+        - - -1
+          - 0
+        capture:
+        - - -1
+          - -1
+        - - -1
+          - 1
+        first_move:
+        - - -1
+          - 0
+        - - -2
+          - 0
+        moved: false
+        path: []
+        space: *6
+      adjacent:
+      - &24 !ruby/object:Space
+        color: white
+        coord:
+        - 5
+        - 3
+        default_image: "■"
+        image: "■"
+        piece: 
+        adjacent: []
+        letter: D
+      - &29 !ruby/object:Space
+        color: black
+        coord:
+        - 4
+        - 3
+        default_image: "□"
+        image: "□"
+        piece: 
+        adjacent: []
+        letter: D
+      letter: D
+    - &12 !ruby/object:Space
+      color: black
+      coord:
+      - 5
+      - 2
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent: []
+      letter: C
+    letter: B
+  - *7
+  letter: A
+- *2
+- &8 !ruby/object:Space
+  color: black
+  coord:
+  - 7
+  - 2
+  default_image: "□"
+  image: "♗"
+  piece: !ruby/object:Bishop
+    color: black
+    image: "♗"
+    moveset:
+    - - 1
+      - 1
+    - - 2
+      - 2
+    - - 3
+      - 3
+    - - 4
+      - 4
+    - - 5
+      - 5
+    - - 6
+      - 6
+    - - 7
+      - 7
+    - - -1
+      - -1
+    - - -2
+      - -2
+    - - -3
+      - -3
+    - - -4
+      - -4
+    - - -5
+      - -5
+    - - -6
+      - -6
+    - - -7
+      - -7
+    - - 1
+      - -1
+    - - 2
+      - -2
+    - - 3
+      - -3
+    - - 4
+      - -4
+    - - 5
+      - -5
+    - - 6
+      - -6
+    - - 7
+      - -7
+    - - -1
+      - 1
+    - - -2
+      - 2
+    - - -3
+      - 3
+    - - -4
+      - 4
+    - - -5
+      - 5
+    - - -6
+      - 6
+    - - -7
+      - 7
+    path: []
+    space: *8
+  adjacent:
+  - &9 !ruby/object:Space
+    color: black
+    coord:
+    - 6
+    - 1
+    default_image: "□"
+    image: "♙"
+    piece: !ruby/object:Pawn
+      color: black
+      image: "♙"
+      moveset:
+      - - -1
+        - 0
+      capture:
+      - - -1
+        - -1
+      - - -1
+        - 1
+      first_move:
+      - - -1
+        - 0
+      - - -2
+        - 0
+      moved: false
+      path: []
+      space: *9
+    adjacent:
+    - &23 !ruby/object:Space
+      color: white
+      coord:
+      - 5
+      - 1
+      default_image: "■"
+      image: "■"
+      piece: 
+      adjacent: []
+      letter: B
+    - &27 !ruby/object:Space
+      color: black
+      coord:
+      - 4
+      - 1
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent: []
+      letter: B
+    letter: B
+  - *6
+  letter: C
+- &10 !ruby/object:Space
+  color: white
+  coord:
+  - 7
+  - 3
+  default_image: "■"
+  image: "♕"
+  piece: !ruby/object:Queen
+    color: black
+    image: "♕"
+    moveset:
+    - - 1
+      - 1
+    - - 2
+      - 2
+    - - 3
+      - 3
+    - - 4
+      - 4
+    - - 5
+      - 5
+    - - 6
+      - 6
+    - - 7
+      - 7
+    - - -1
+      - -1
+    - - -2
+      - -2
+    - - -3
+      - -3
+    - - -4
+      - -4
+    - - -5
+      - -5
+    - - -6
+      - -6
+    - - -7
+      - -7
+    - - 1
+      - -1
+    - - 2
+      - -2
+    - - 3
+      - -3
+    - - 4
+      - -4
+    - - 5
+      - -5
+    - - 6
+      - -6
+    - - 7
+      - -7
+    - - -1
+      - 1
+    - - -2
+      - 2
+    - - -3
+      - 3
+    - - -4
+      - 4
+    - - -5
+      - 5
+    - - -6
+      - 6
+    - - -7
+      - 7
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *10
+  adjacent:
+  - &11 !ruby/object:Space
+    color: white
+    coord:
+    - 6
+    - 2
+    default_image: "■"
+    image: "♙"
+    piece: !ruby/object:Pawn
+      color: black
+      image: "♙"
+      moveset:
+      - - -1
+        - 0
+      capture:
+      - - -1
+        - -1
+      - - -1
+        - 1
+      first_move:
+      - - -1
+        - 0
+      - - -2
+        - 0
+      moved: false
+      path: []
+      space: *11
+    adjacent:
+    - *12
+    - &28 !ruby/object:Space
+      color: white
+      coord:
+      - 4
+      - 2
+      default_image: "■"
+      image: "■"
+      piece: 
+      adjacent: []
+      letter: C
+    letter: C
+  - &13 !ruby/object:Space
+    color: white
+    coord:
+    - 6
+    - 4
+    default_image: "■"
+    image: "♙"
+    piece: !ruby/object:Pawn
+      color: black
+      image: "♙"
+      moveset:
+      - - -1
+        - 0
+      capture:
+      - - -1
+        - -1
+      - - -1
+        - 1
+      first_move:
+      - - -1
+        - 0
+      - - -2
+        - 0
+      moved: false
+      path: []
+      space: *13
+    adjacent:
+    - &25 !ruby/object:Space
+      color: black
+      coord:
+      - 5
+      - 4
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent: []
+      letter: E
+    - &30 !ruby/object:Space
+      color: white
+      coord:
+      - 4
+      - 4
+      default_image: "■"
+      image: "■"
+      piece: 
+      adjacent: []
+      letter: E
+    letter: E
+  - *6
+  - &14 !ruby/object:Space
+    color: black
+    coord:
+    - 7
+    - 4
+    default_image: "□"
+    image: "♔"
+    piece: !ruby/object:King
+      color: black
+      image: "♔"
+      moveset:
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 0
+        - 1
+      - - -1
+        - 1
+      - - -1
+        - 0
+      - - -1
+        - -1
+      - - 0
+        - -1
+      - - 1
+        - -1
+      path: []
+      space: *14
+    adjacent:
+    - *14
+    letter: E
+  - *8
+  letter: D
+- *14
+- &15 !ruby/object:Space
+  color: white
+  coord:
+  - 7
+  - 5
+  default_image: "■"
+  image: "♗"
+  piece: !ruby/object:Bishop
+    color: black
+    image: "♗"
+    moveset:
+    - - 1
+      - 1
+    - - 2
+      - 2
+    - - 3
+      - 3
+    - - 4
+      - 4
+    - - 5
+      - 5
+    - - 6
+      - 6
+    - - 7
+      - 7
+    - - -1
+      - -1
+    - - -2
+      - -2
+    - - -3
+      - -3
+    - - -4
+      - -4
+    - - -5
+      - -5
+    - - -6
+      - -6
+    - - -7
+      - -7
+    - - 1
+      - -1
+    - - 2
+      - -2
+    - - 3
+      - -3
+    - - 4
+      - -4
+    - - 5
+      - -5
+    - - 6
+      - -6
+    - - 7
+      - -7
+    - - -1
+      - 1
+    - - -2
+      - 2
+    - - -3
+      - 3
+    - - -4
+      - 4
+    - - -5
+      - 5
+    - - -6
+      - 6
+    - - -7
+      - 7
+    path: []
+    space: *15
+  adjacent:
+  - *13
+  - &16 !ruby/object:Space
+    color: white
+    coord:
+    - 6
+    - 6
+    default_image: "■"
+    image: "♙"
+    piece: !ruby/object:Pawn
+      color: black
+      image: "♙"
+      moveset:
+      - - -1
+        - 0
+      capture:
+      - - -1
+        - -1
+      - - -1
+        - 1
+      first_move:
+      - - -1
+        - 0
+      - - -2
+        - 0
+      moved: false
+      path: []
+      space: *16
+    adjacent:
+    - &26 !ruby/object:Space
+      color: black
+      coord:
+      - 5
+      - 6
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent: []
+      letter: G
+    - &32 !ruby/object:Space
+      color: white
+      coord:
+      - 4
+      - 6
+      default_image: "■"
+      image: "■"
+      piece: 
+      adjacent: []
+      letter: G
+    letter: G
+  letter: F
+- &17 !ruby/object:Space
+  color: black
+  coord:
+  - 7
+  - 6
+  default_image: "□"
+  image: "♘"
+  piece: !ruby/object:Knight
+    color: black
+    image: "♘"
+    moveset:
+    - - 1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - -2
+      - -1
+    - - 1
+      - -2
+    - - 2
+      - -1
+    - - -1
+      - 2
+    - - -2
+      - 1
+    path: []
+    space: *17
+  adjacent:
+  - *13
+  - &22 !ruby/object:Space
+    color: white
+    coord:
+    - 5
+    - 5
+    default_image: "■"
+    image: "■"
+    piece: 
+    adjacent: []
+    letter: F
+  - &20 !ruby/object:Space
+    color: white
+    coord:
+    - 5
+    - 7
+    default_image: "■"
+    image: "■"
+    piece: 
+    adjacent: []
+    letter: H
+  letter: G
+- &18 !ruby/object:Space
+  color: white
+  coord:
+  - 7
+  - 7
+  default_image: "■"
+  image: "♖"
+  piece: !ruby/object:Rook
+    color: black
+    image: "♖"
+    moveset:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *18
+  adjacent:
+  - &19 !ruby/object:Space
+    color: black
+    coord:
+    - 6
+    - 7
+    default_image: "□"
+    image: "♙"
+    piece: !ruby/object:Pawn
+      color: black
+      image: "♙"
+      moveset:
+      - - -1
+        - 0
+      capture:
+      - - -1
+        - -1
+      - - -1
+        - 1
+      first_move:
+      - - -1
+        - 0
+      - - -2
+        - 0
+      moved: false
+      path: []
+      space: *19
+    adjacent:
+    - *20
+    - &33 !ruby/object:Space
+      color: black
+      coord:
+      - 4
+      - 7
+      default_image: "□"
+      image: "□"
+      piece: 
+      adjacent: []
+      letter: H
+    letter: H
+  - *17
+  letter: H
+'7':
+- *7
+- *9
+- *11
+- *6
+- *13
+- &21 !ruby/object:Space
+  color: black
+  coord:
+  - 6
+  - 5
+  default_image: "□"
+  image: "♙"
+  piece: !ruby/object:Pawn
+    color: black
+    image: "♙"
+    moveset:
+    - - -1
+      - 0
+    capture:
+    - - -1
+      - -1
+    - - -1
+      - 1
+    first_move:
+    - - -1
+      - 0
+    - - -2
+      - 0
+    moved: false
+    path: []
+    space: *21
+  adjacent:
+  - *22
+  - &31 !ruby/object:Space
+    color: black
+    coord:
+    - 4
+    - 5
+    default_image: "□"
+    image: "□"
+    piece: 
+    adjacent: []
+    letter: F
+  letter: F
+- *16
+- *19
+'6':
+- *4
+- *23
+- *12
+- *24
+- *25
+- *22
+- *26
+- *20
+'5':
+- *3
+- *27
+- *28
+- *29
+- *30
+- *31
+- *32
+- *33
+'4':
+- *5
+- &46 !ruby/object:Space
+  color: white
+  coord:
+  - 3
+  - 1
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: B
+- &49 !ruby/object:Space
+  color: black
+  coord:
+  - 3
+  - 2
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: C
+- &52 !ruby/object:Space
+  color: white
+  coord:
+  - 3
+  - 3
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: D
+- &37 !ruby/object:Space
+  color: black
+  coord:
+  - 3
+  - 4
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: E
+- &40 !ruby/object:Space
+  color: white
+  coord:
+  - 3
+  - 5
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: F
+- &55 !ruby/object:Space
+  color: black
+  coord:
+  - 3
+  - 6
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: G
+- &57 !ruby/object:Space
+  color: white
+  coord:
+  - 3
+  - 7
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: H
+'3':
+- &43 !ruby/object:Space
+  color: white
+  coord:
+  - 2
+  - 0
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: A
+- &45 !ruby/object:Space
+  color: black
+  coord:
+  - 2
+  - 1
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: B
+- &48 !ruby/object:Space
+  color: white
+  coord:
+  - 2
+  - 2
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: C
+- &51 !ruby/object:Space
+  color: black
+  coord:
+  - 2
+  - 3
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: D
+- &36 !ruby/object:Space
+  color: white
+  coord:
+  - 2
+  - 4
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: E
+- &38 !ruby/object:Space
+  color: black
+  coord:
+  - 2
+  - 5
+  default_image: "□"
+  image: "□"
+  piece: 
+  adjacent: []
+  letter: F
+- &54 !ruby/object:Space
+  color: white
+  coord:
+  - 2
+  - 6
+  default_image: "■"
+  image: "■"
+  piece: 
+  adjacent: []
+  letter: G
+- &34 !ruby/object:Space
+  color: black
+  coord:
+  - 2
+  - 7
+  default_image: "□"
+  image: "♞"
+  piece: !ruby/object:Knight
+    color: white
+    image: "♞"
+    moveset:
+    - - 1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - -2
+      - -1
+    - - 1
+      - -2
+    - - 2
+      - -1
+    - - -1
+      - 2
+    - - -2
+      - 1
+    path: []
+    space: *34
+    previous: &41 !ruby/object:Space
+      color: white
+      coord:
+      - 0
+      - 6
+      default_image: "■"
+      image: "■"
+      piece: 
+      adjacent:
+      - *34
+      - &35 !ruby/object:Space
+        color: black
+        coord:
+        - 1
+        - 4
+        default_image: "□"
+        image: "♟"
+        piece: !ruby/object:Pawn
+          color: white
+          image: "♟"
+          moveset:
+          - - 1
+            - 0
+          capture:
+          - - 1
+            - -1
+          - - 1
+            - 1
+          first_move:
+          - - 1
+            - 0
+          - - 2
+            - 0
+          moved: false
+          path: []
+          space: *35
+        adjacent:
+        - *36
+        - *37
+        letter: E
+      - *38
+      letter: G
+  adjacent:
+  - &39 !ruby/object:Space
+    color: white
+    coord:
+    - 1
+    - 5
+    default_image: "■"
+    image: "♟"
+    piece: !ruby/object:Pawn
+      color: white
+      image: "♟"
+      moveset:
+      - - 1
+        - 0
+      capture:
+      - - 1
+        - -1
+      - - 1
+        - 1
+      first_move:
+      - - 1
+        - 0
+      - - 2
+        - 0
+      moved: false
+      path: []
+      space: *39
+    adjacent:
+    - *38
+    - *40
+    letter: F
+  - *41
+  - *40
+  - *32
+  letter: H
+'2':
+- &42 !ruby/object:Space
+  color: black
+  coord:
+  - 1
+  - 0
+  default_image: "□"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *42
+  adjacent:
+  - *43
+  - *5
+  letter: A
+- &44 !ruby/object:Space
+  color: white
+  coord:
+  - 1
+  - 1
+  default_image: "■"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *44
+  adjacent:
+  - *45
+  - *46
+  letter: B
+- &47 !ruby/object:Space
+  color: black
+  coord:
+  - 1
+  - 2
+  default_image: "□"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *47
+  adjacent:
+  - *48
+  - *49
+  letter: C
+- &50 !ruby/object:Space
+  color: white
+  coord:
+  - 1
+  - 3
+  default_image: "■"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *50
+  adjacent:
+  - *51
+  - *52
+  letter: D
+- *35
+- *39
+- &53 !ruby/object:Space
+  color: black
+  coord:
+  - 1
+  - 6
+  default_image: "□"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *53
+  adjacent:
+  - *54
+  - *55
+  letter: G
+- &56 !ruby/object:Space
+  color: white
+  coord:
+  - 1
+  - 7
+  default_image: "■"
+  image: "♟"
+  piece: !ruby/object:Pawn
+    color: white
+    image: "♟"
+    moveset:
+    - - 1
+      - 0
+    capture:
+    - - 1
+      - -1
+    - - 1
+      - 1
+    first_move:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    moved: false
+    path: []
+    space: *56
+  adjacent:
+  - *34
+  - *57
+  letter: H
+'1':
+- &58 !ruby/object:Space
+  color: white
+  coord:
+  - 0
+  - 0
+  default_image: "■"
+  image: "♜"
+  piece: !ruby/object:Rook
+    color: white
+    image: "♜"
+    moveset:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *58
+  adjacent:
+  - *42
+  - &59 !ruby/object:Space
+    color: black
+    coord:
+    - 0
+    - 1
+    default_image: "□"
+    image: "♞"
+    piece: !ruby/object:Knight
+      color: white
+      image: "♞"
+      moveset:
+      - - 1
+        - 2
+      - - -1
+        - -2
+      - - 2
+        - 1
+      - - -2
+        - -1
+      - - 1
+        - -2
+      - - 2
+        - -1
+      - - -1
+        - 2
+      - - -2
+        - 1
+      path: []
+      space: *59
+    adjacent:
+    - *50
+    - *48
+    - *43
+    letter: B
+  letter: A
+- *59
+- &60 !ruby/object:Space
+  color: white
+  coord:
+  - 0
+  - 2
+  default_image: "■"
+  image: "♝"
+  piece: !ruby/object:Bishop
+    color: white
+    image: "♝"
+    moveset:
+    - - 1
+      - 1
+    - - 2
+      - 2
+    - - 3
+      - 3
+    - - 4
+      - 4
+    - - 5
+      - 5
+    - - 6
+      - 6
+    - - 7
+      - 7
+    - - -1
+      - -1
+    - - -2
+      - -2
+    - - -3
+      - -3
+    - - -4
+      - -4
+    - - -5
+      - -5
+    - - -6
+      - -6
+    - - -7
+      - -7
+    - - 1
+      - -1
+    - - 2
+      - -2
+    - - 3
+      - -3
+    - - 4
+      - -4
+    - - 5
+      - -5
+    - - 6
+      - -6
+    - - 7
+      - -7
+    - - -1
+      - 1
+    - - -2
+      - 2
+    - - -3
+      - 3
+    - - -4
+      - 4
+    - - -5
+      - 5
+    - - -6
+      - 6
+    - - -7
+      - 7
+    path: []
+    space: *60
+  adjacent:
+  - *50
+  - *44
+  letter: C
+- &61 !ruby/object:Space
+  color: black
+  coord:
+  - 0
+  - 3
+  default_image: "□"
+  image: "♛"
+  piece: !ruby/object:Queen
+    color: white
+    image: "♛"
+    moveset:
+    - - 1
+      - 1
+    - - 2
+      - 2
+    - - 3
+      - 3
+    - - 4
+      - 4
+    - - 5
+      - 5
+    - - 6
+      - 6
+    - - 7
+      - 7
+    - - -1
+      - -1
+    - - -2
+      - -2
+    - - -3
+      - -3
+    - - -4
+      - -4
+    - - -5
+      - -5
+    - - -6
+      - -6
+    - - -7
+      - -7
+    - - 1
+      - -1
+    - - 2
+      - -2
+    - - 3
+      - -3
+    - - 4
+      - -4
+    - - 5
+      - -5
+    - - 6
+      - -6
+    - - 7
+      - -7
+    - - -1
+      - 1
+    - - -2
+      - 2
+    - - -3
+      - 3
+    - - -4
+      - 4
+    - - -5
+      - 5
+    - - -6
+      - 6
+    - - -7
+      - 7
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *61
+  adjacent:
+  - *35
+  - *47
+  - *50
+  - &62 !ruby/object:Space
+    color: white
+    coord:
+    - 0
+    - 4
+    default_image: "■"
+    image: "♚"
+    piece: !ruby/object:King
+      color: white
+      image: "♚"
+      moveset:
+      - - 1
+        - 0
+      - - 1
+        - 1
+      - - 0
+        - 1
+      - - -1
+        - 1
+      - - -1
+        - 0
+      - - -1
+        - -1
+      - - 0
+        - -1
+      - - 1
+        - -1
+      path: []
+      space: *62
+    adjacent:
+    - *35
+    - *39
+    - &63 !ruby/object:Space
+      color: black
+      coord:
+      - 0
+      - 5
+      default_image: "□"
+      image: "♝"
+      piece: !ruby/object:Bishop
+        color: white
+        image: "♝"
+        moveset:
+        - - 1
+          - 1
+        - - 2
+          - 2
+        - - 3
+          - 3
+        - - 4
+          - 4
+        - - 5
+          - 5
+        - - 6
+          - 6
+        - - 7
+          - 7
+        - - -1
+          - -1
+        - - -2
+          - -2
+        - - -3
+          - -3
+        - - -4
+          - -4
+        - - -5
+          - -5
+        - - -6
+          - -6
+        - - -7
+          - -7
+        - - 1
+          - -1
+        - - 2
+          - -2
+        - - 3
+          - -3
+        - - 4
+          - -4
+        - - 5
+          - -5
+        - - 6
+          - -6
+        - - 7
+          - -7
+        - - -1
+          - 1
+        - - -2
+          - 2
+        - - -3
+          - 3
+        - - -4
+          - 4
+        - - -5
+          - 5
+        - - -6
+          - 6
+        - - -7
+          - 7
+        path: []
+        space: *63
+      adjacent:
+      - *53
+      - *35
+      letter: F
+    - *61
+    - *50
+    letter: E
+  - *60
+  letter: D
+- *62
+- *63
+- *41
+- &64 !ruby/object:Space
+  color: black
+  coord:
+  - 0
+  - 7
+  default_image: "□"
+  image: "♜"
+  piece: !ruby/object:Rook
+    color: white
+    image: "♜"
+    moveset:
+    - - 1
+      - 0
+    - - 2
+      - 0
+    - - 3
+      - 0
+    - - 4
+      - 0
+    - - 5
+      - 0
+    - - 6
+      - 0
+    - - 7
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - 2
+    - - 0
+      - 3
+    - - 0
+      - 4
+    - - 0
+      - 5
+    - - 0
+      - 6
+    - - 0
+      - 7
+    - - -1
+      - 0
+    - - -2
+      - 0
+    - - -3
+      - 0
+    - - -4
+      - 0
+    - - -5
+      - 0
+    - - -6
+      - 0
+    - - -7
+      - 0
+    - - 0
+      - -1
+    - - 0
+      - -2
+    - - 0
+      - -3
+    - - 0
+      - -4
+    - - 0
+      - -5
+    - - 0
+      - -6
+    - - 0
+      - -7
+    path: []
+    space: *64
+  adjacent:
+  - *56
+  - *41
+  letter: H
