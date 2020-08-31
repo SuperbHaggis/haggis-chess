@@ -3,7 +3,9 @@ class Hag
     input = gets.chomp.downcase
     case input
     when 'help'
-      puts '>> Need some help?'
+      file = File.open('../docs/help.txt')
+      puts file.readlines.map(&:chomp)
+      nil
     when 'save'
       puts '>> Game saved!'
     when 'display'
@@ -11,7 +13,7 @@ class Hag
     when /[A-H][1-8]/i
       input
     else
-      puts '>> Please enter a valid command.'
+      puts '>> Please enter a valid command (enter \'help\' for more options).'
     end
   end
 end
