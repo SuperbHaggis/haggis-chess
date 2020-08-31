@@ -37,5 +37,6 @@ end
 def load(game)
   savedata = YAML.load(File.read('../save/gamesave.yml'))
   game.board.spaces = savedata
+  game.board.display
   nil
 end
