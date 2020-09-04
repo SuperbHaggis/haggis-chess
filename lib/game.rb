@@ -8,9 +8,9 @@ class Game
     @board.display
   end
 
-  def play_round
-    @players.each do |player|
-      piece = choose_space(choose_piece(player))
+  def play_round(players = @players)
+    players.each do |player|
+      piece = choose_space(choose_piece(player), player)
       piece.previous.piece = nil
       piece.space.piece = piece
       board.display
@@ -19,31 +19,53 @@ class Game
     end
   end
 
-  def play
-    play_round while @checkmate == false
+  def play(players = @players)
+    play_round(players) while @checkmate == false
   end
 
   private
 
+  def load(input)
+    piece = input[1]
+    loaded_phase = 'piece' if piece.nil?
+    loaded_player = input[0]
+    if loaded_phase == 'piece'
+      choose_space(choose_piece(loaded_player), loaded_player)
+    else
+      choose_space(piece, loaded_player)
+    end
+    loaded_player == 'black?' ? play(@players.reverse) : play
+  end
+
   def choose_piece(player)
     piece_chosen = false
+    phase = 'piece'
     puts ">> #{player.capitalize} player, choose a piece by coordinate: "
     while piece_chosen == false
-      letter_coord = gets.chomp.capitalize.split('')
-      if @board.find_space(letter_coord).occupied?
-        piece = @board.find_space(letter_coord).piece
-        piece_chosen = true if player == piece.color && piece.moveable?(@board)
+      input = Hag.new.run(self, player, phase)
+      load(input) if input.class == Array
+      unless input.nil?
+        letter_coord = input.capitalize.split('')
+        if @board.find_space(letter_coord).occupied?
+          piece = @board.find_space(letter_coord).piece
+          piece_chosen = true if player == piece.color && piece.moveable?(@board)
+        end
       end
     end
     piece
   end
 
-  def choose_space(piece)
+  def choose_space(piece, player)
     space_chosen = false
-    puts ">> Choose a destination for your #{piece.class}: "
+    msg = ">> Choose a destination for your #{piece.class}: "
+    puts msg
     while space_chosen == false
-      letter_coord = gets.chomp.capitalize.split('')
-      space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
+      input = Hag.new.run(self, player, msg, piece)
+      load(input) if input.class == Array
+      unless input.nil?
+        letter_coord = input.capitalize.split('')
+        space_chosen = true if piece.legal_move?(@board.find_space(letter_coord), @board)
+      end
     end
     piece.move(@board.find_space(letter_coord))
     piece

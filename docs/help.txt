@@ -1,0 +1,16 @@
+================ Haggis Chess Help Menu ===============
+
+  'help'...........................displays this menu
+  'display'...................displays the game board
+  'save'......................saves your current game
+  'load'.....................loads your previous save
+  'b2'..................chooses space B2 on the board
+
+  You may only select pieces that belong to you and
+  are moveable. You may only select spaces that are
+  not occupied, or are occupied by enemy pieces that
+  can be captured by your selected piece. Be careful:
+  once you have chosen a piece or space, you cannot 
+  undo your selection!
+
+>> Please enter a valid command:
